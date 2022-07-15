@@ -25,11 +25,10 @@ function createWord(getWord) {
 function createWords() {
   const getWord = getRandomWord();
 
-  console.log(getWord);
-
   let verify = true;
 
   spanHint ? (spanHint.textContent = getWord.hint) : "";
+
   for (let i = 0; i < getWord.word.length; i += 1) {
     createWord(getWord);
   }
@@ -42,12 +41,12 @@ function createWords() {
   }
 
   function wrongWord(result) {
+    spanGuess.textContent = +spanGuess.textContent - 1;
+    spanLetters.textContent = +spanLetters.textContent + 1;
     if (result === 1) {
       message.textContent = "😵‍💫 Você perdeu!";
       verify = false;
     }
-    spanGuess.textContent = +spanGuess.textContent - 1;
-    spanLetters.textContent = +spanLetters.textContent + 1;
   }
 
   document.addEventListener("keydown", (e) => {
@@ -78,5 +77,7 @@ buttonReset.addEventListener("click", () => {
   gameBox.innerHTML = "";
   spanGuess.textContent = 8;
   spanLetters.textContent = 0;
+  store = [];
+  message.textContent = "";
   createWords();
 });
