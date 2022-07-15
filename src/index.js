@@ -5,6 +5,8 @@ const spanGuess = document.querySelector(".span-guess");
 const spanLetters = document.querySelector(".span-letters");
 const message = document.querySelector(".message");
 
+let store = [];
+
 function getRandomWord() {
   const randomNumber = Math.round(Math.random() * wordList.length);
   const randomWord = wordList[randomNumber];
@@ -22,29 +24,50 @@ function createWord(getWord) {
 
 function createWords() {
   const getWord = getRandomWord();
-  spanHint.textContent = getWord.hint;
+
+  console.log(getWord);
+
+  let verify = true;
+
+  spanHint ? (spanHint.textContent = getWord.hint) : "";
   for (let i = 0; i < getWord.word.length; i += 1) {
     createWord(getWord);
   }
 
   let setChar = document.querySelectorAll(".char");
 
-  document.addEventListener("keydown", (e) => {
-    const letters = "abcdefghijklmnopqrstuvwxyz";
-    const isEventFinInLetters = letters.includes(e.key);
-    const isEventInWord = getWord.word.includes(e.key);
+  function rightWord(e) {
+    let findIndex = getWord.word.indexOf(e);
+    setChar[findIndex].textContent = e;
+  }
 
-    if (isEventFinInLetters && isEventInWord) {
-      let findIndex = getWord.word.indexOf(e.key);
-      setChar[findIndex].textContent = e.key;
-    } else {
-      let result = +spanGuess.textContent;
-      spanGuess.textContent = +spanGuess.textContent - 1;
-      if (result === 0) {
-        message.textContent = "😵‍💫 Você perdeu!";
-        return;
+  function wrongWord(result) {
+    if (result === 1) {
+      message.textContent = "😵‍💫 Você perdeu!";
+      verify = false;
+    }
+    spanGuess.textContent = +spanGuess.textContent - 1;
+    spanLetters.textContent = +spanLetters.textContent + 1;
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (verify) {
+      const letters = "abcdefghijklmnopqrstuvwxyz";
+      const isEventFindInLetters = letters.includes(e.key);
+      const isEventInWord = getWord.word.includes(e.key);
+      const result = +spanGuess.textContent;
+
+      if (!store.includes(e.key)) {
+        if (isEventFindInLetters && isEventInWord) {
+          rightWord(e.key);
+        }
+
+        if (isEventFindInLetters) {
+          wrongWord(result);
+        }
+
+        store.push(e.key);
       }
-      spanLetters.textContent = +spanLetters.textContent + 1;
     }
   });
 }
