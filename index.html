@@ -5,17 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jogo - Descubra a Palavra!</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <section>
-      <h1>Descubra a palavra!</h1>
-      <hr />
-      <article></article>
-      <p>Dica: <span></span></p>
-      <p>Tentativas Restantes: <span></span></p>
-      <p>Letras Erradas: <span></span></p>
-      <p></p>
-      <button>Reset</button>
+    <section class="game__container">
+      <article class="box__title">
+        <h1 class="title">Descubra a Palavra!</h1>
+      </article>
+      <!-- Palavra -->
+      <article class="box__word"></article>
+      <!-- Interativo -->
+      <article class="game__box">
+        <p>Dica: <span class="span-hint"></span></p>
+        <p>Tentativas Restantes: <span class="span-guess">8</span></p>
+        <p>Letras Erradas: <span class="span-letters">0</span></p>
+      </article>
+      <button class="btn-reset">Reset</button>
     </section>
+    <script src="./data/data.js"></script>
+    <script src="./src/index.js"></script>
   </body>
 </html>
