@@ -1,5 +1,13 @@
 ### Jogo - Descubra a Palavra!
 
+Tecnologias:
+
+<ul>
+  <li>Html</li>
+  <li>CSS</li>
+  <li>Javascript</li>
+</ul>
+
 Como jogar:
 
 <ul>
