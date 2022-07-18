@@ -16,3 +16,6 @@ Como jogar:
   <li>Se a letra estiver errada, conta 1 erro e indica quantas chances ainda restam;</li>
   <li>Se a pessoa perder irá aparecer uma mensagem indicando que ela perdeu</li>
 </ul>
+
+<h3>Objetivo: </h3>
+<p>Treinar habilidades já conhecidas e desenvolver a parte de lógica</p>
